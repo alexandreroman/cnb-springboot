@@ -5,3 +5,6 @@ management:
         include: health, info, prometheus
 server:
   port: ${PORT:8080}
+
+app:
+  message: Hello Spring Boot!

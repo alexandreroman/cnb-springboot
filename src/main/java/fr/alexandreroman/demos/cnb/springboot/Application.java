@@ -16,10 +16,15 @@
 
 package fr.alexandreroman.demos.cnb.springboot;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,11 +38,34 @@ public class Application {
     }
 }
 
+@ConfigurationProperties("app")
+@ConstructorBinding
+@RequiredArgsConstructor
+class AppProperties {
+    @Getter
+    private final String message;
+}
+
+@Controller
+@RequiredArgsConstructor
+class IndexController {
+    private final AppProperties props;
+
+    @GetMapping("/")
+    String index(Map<String, Object> model) {
+        model.put("message", props.getMessage());
+        return "index";
+    }
+}
+
 @RestController
+@RequiredArgsConstructor
 class GreetingsController {
+    private final AppProperties props;
+
     @GetMapping(value = "/greetings", produces = MediaType.TEXT_PLAIN_VALUE)
     String greetings() {
-        return "Hello world!";
+        return props.getMessage();
     }
 }
 

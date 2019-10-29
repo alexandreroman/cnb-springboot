@@ -1,5 +1,5 @@
 <DOCTYPE! html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -8,7 +8,7 @@
 </head>
 <body>
 <header>
-    <h1>Hello Spring Boot!</h1>
+    <h1 th:text="${message}">Insert message here</h1>
 </header>
 <section>
     <img src="springboot.png" width="200" height="52" alt="Spring Boot"/>
