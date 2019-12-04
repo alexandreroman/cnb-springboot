@@ -8,3 +8,4 @@ server:
 
 app:
   message: Hello Spring Boot!
+  title: Spring Boot with Cloud-native Buildpacks

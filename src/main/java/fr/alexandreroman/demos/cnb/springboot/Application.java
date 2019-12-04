@@ -46,6 +46,8 @@ public class Application {
 class AppProperties {
     @Getter
     private final String message;
+    @Getter
+    private final String title;
 }
 
 @Controller
@@ -56,6 +58,7 @@ class IndexController {
     @GetMapping("/")
     String index(Map<String, Object> model) {
         model.put("message", props.getMessage());
+        model.put("title", props.getTitle());
         return "index";
     }
 }
