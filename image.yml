@@ -1,11 +1,11 @@
 team: pa
 source:
-git:
+  git:
     url: https://gitlab.run.haas-243.pez.pivotal.io/dev/cnb-springboot/
     revision: $(cat source-code/.git/ref)
 build:
-env:
-- name: BP_JAVA_VERSION
+  env:
+  - name: BP_JAVA_VERSION
     value: 11.*
 image:
-    tag: guillaumemorini/cnb-springboot
+  tag: guillaumemorini/cnb-springboot
