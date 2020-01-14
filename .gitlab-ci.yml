@@ -15,35 +15,31 @@ image-build:
   image: alexandreroman/pb-cli:0.0.3
   stage: package
   script:
-  - /bin/bash -c """
-          cat > registry.yml << EOF
-            team: pa
-            registry: index.docker.io
-            username: guillaumemorini
-            password: pine45.,
-          EOF
-          cat registry.yml
-          cat > image.yml << EOF
-          team: pa
-          source:
-            git:
-              url: https://gitlab.run.haas-243.pez.pivotal.io/dev/cnb-springboot
-              revision: $(cat source-code/.git/ref)
-          build:
-            env:
-            - name: BP_JAVA_VERSION
-              value: 11.*
-          image:
-            tag: guillaumemorini/cnb-springboot
-          EOF
-          cat image.yml
-          export BUILD_SERVICE_USERNAME=gmorini@pivotal.io
-          export BUILD_SERVICE_PASSWORD=pvtl181121
-          pb api set https://build.pks.pvtl.eu --skip-ssl-validation
-          pb login
-          pb secrets registry apply -f registry.yml
-          pb image apply -f image.yml
-          """
+  - cat > registry.yml << EOF
+team: pa
+registry: index.docker.io
+username: guillaumemorini
+password: pine45.,
+EOF
+  - cat > image.yml << EOF
+team: pa
+source:
+git:
+    url: https://gitlab.run.haas-243.pez.pivotal.io/dev/cnb-springboot
+    revision: $(cat source-code/.git/ref)
+build:
+env:
+- name: BP_JAVA_VERSION
+    value: 11.*
+image:
+tag: guillaumemorini/cnb-springboot
+EOF
+  - export BUILD_SERVICE_USERNAME=gmorini@pivotal.io
+  - export BUILD_SERVICE_PASSWORD=pvtl181121
+  - pb api set https://build.pks.pvtl.eu --skip-ssl-validation
+  - pb login
+  - pb secrets registry apply -f registry.yml
+  - pb image apply -f image.yml
 
 k8s-deploy:
   image: pivotalservices/pks-kubectl
@@ -52,4 +48,3 @@ k8s-deploy:
   - pks login -a api.run.haas-243.pez.pivotal.io -u alana -p Pivotal2020 -k
   - pks get-credentials test
   - kubectl apply -f deployment.yml
-  
