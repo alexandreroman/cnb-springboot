@@ -8,4 +8,4 @@ build:
   - name: BP_JAVA_VERSION
     value: 11.*
 image:
-  tag: guillaumemorini/cnb-springboot
+  tag: harbor.run.haas-243.pez.pivotal.io/dev/cnb-springboot

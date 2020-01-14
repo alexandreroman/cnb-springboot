@@ -6,8 +6,6 @@ image-build:
   image: alexandreroman/pb-cli:0.0.3
   stage: package
   script:
-#  - echo "team: pa\nregistry: index.docker.io\nusername: guillaumemorini\npassword: pine45.," > registry.yml
-#  - echo "team: pa\nsource:\ngit:\n    url: https://gitlab.run.haas-243.pez.pivotal.io/dev/cnb-springboot\n    revision: $(cat source-code/.git/ref)\nbuild:\nenv:\n- name: BP_JAVA_VERSION\n    value: 11.*\nimage:\ntag: guillaumemorini/cnb-springboot\n" > image.yml
   - export BUILD_SERVICE_USERNAME=gmorini@pivotal.io
   - export BUILD_SERVICE_PASSWORD=pvtl181121
   - pb api set https://build.pks.pvtl.eu --skip-ssl-validation

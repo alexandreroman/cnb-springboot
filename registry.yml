@@ -1,4 +1,4 @@
 team: pa
-registry: index.docker.io
-username: guillaumemorini
-password: pine45.,
+registry: harbor.run.haas-243.pez.pivotal.io
+username: admin
+password: vQjbBFyBW5G3HpE9YZ!

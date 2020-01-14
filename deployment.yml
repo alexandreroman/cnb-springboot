@@ -26,7 +26,7 @@ spec:
         - env:
             - name: APP_TITLE
               value: DEV
-          image: guillaumemorini/cnb-springboot
+          image: harbor.run.haas-243.pez.pivotal.io/dev/cnb-springboot
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
