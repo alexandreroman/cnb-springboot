@@ -1,13 +1,4 @@
-image: docker:latest
-services:
-  - docker:dind
-
-variables:
-  DOCKER_DRIVER: overlay
-  SPRING_PROFILES_ACTIVE: gitlab-ci
-
 stages:
-  - build
   - package
   - deploy
 
@@ -15,25 +6,8 @@ image-build:
   image: alexandreroman/pb-cli:0.0.3
   stage: package
   script:
-  - cat > registry.yml << EOF
-team: pa
-registry: index.docker.io
-username: guillaumemorini
-password: pine45.,
-EOF
-  - cat > image.yml << EOF
-team: pa
-source:
-git:
-    url: https://gitlab.run.haas-243.pez.pivotal.io/dev/cnb-springboot
-    revision: $(cat source-code/.git/ref)
-build:
-env:
-- name: BP_JAVA_VERSION
-    value: 11.*
-image:
-tag: guillaumemorini/cnb-springboot
-EOF
+#  - echo "team: pa\nregistry: index.docker.io\nusername: guillaumemorini\npassword: pine45.," > registry.yml
+#  - echo "team: pa\nsource:\ngit:\n    url: https://gitlab.run.haas-243.pez.pivotal.io/dev/cnb-springboot\n    revision: $(cat source-code/.git/ref)\nbuild:\nenv:\n- name: BP_JAVA_VERSION\n    value: 11.*\nimage:\ntag: guillaumemorini/cnb-springboot\n" > image.yml
   - export BUILD_SERVICE_USERNAME=gmorini@pivotal.io
   - export BUILD_SERVICE_PASSWORD=pvtl181121
   - pb api set https://build.pks.pvtl.eu --skip-ssl-validation
