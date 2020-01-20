@@ -2,7 +2,7 @@ team: pa
 source:
   git:
     url: https://gitlab.run.haas-243.pez.pivotal.io/dev/cnb-springboot/
-    revision: $(cat source-code/.git/ref)
+    revision: master
 build:
   env:
   - name: BP_JAVA_VERSION
