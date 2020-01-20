@@ -9,7 +9,7 @@ metadata:
   name: app
   namespace: cnb-springboot
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       role: app
