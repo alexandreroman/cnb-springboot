@@ -29,7 +29,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
@@ -78,10 +77,10 @@ class GreetingsController {
 class InfoController {
     @GetMapping(value = "/info")
     Map<String, Object> info() {
-        final Map<String, Object> info = new HashMap<>(3);
-        info.put("java", "Java " + System.getProperty("java.version"));
-        info.put("spring.boot", "Spring Boot " + SpringBootApplication.class.getPackage().getImplementationVersion());
-        info.put("spring", "Spring " + ApplicationContext.class.getPackage().getImplementationVersion());
-        return info;
+        return Map.of(
+                "java", "Java " + System.getProperty("java.version"),
+                "spring.boot", "Spring Boot " + SpringBootApplication.class.getPackage().getImplementationVersion(),
+                "spring", "Spring " + ApplicationContext.class.getPackage().getImplementationVersion()
+        );
     }
 }
