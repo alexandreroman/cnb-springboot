@@ -9,7 +9,6 @@ secured up-to-date container images out of your source code.
 You don't need to care about the runtime environment (JVM)
 or optimizing the container (such as Java memory settings):
 CNB will automatically provision dependencies and configure your container.
-In
 
 ## How to use it?
 
