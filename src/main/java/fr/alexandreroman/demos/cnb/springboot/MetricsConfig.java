@@ -20,8 +20,10 @@ import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Tags;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,6 +34,8 @@ import java.util.stream.Collectors;
 @Configuration
 @Slf4j
 class MetricsConfig {
+    private Counter appInfoCounter;
+
     @Bean
     Counter appInfo(MeterRegistry reg) {
         Tags tags = Tags.of("java.version", System.getProperty("java.version"));
@@ -39,9 +43,15 @@ class MetricsConfig {
         if (openSslVersion != null) {
             tags = tags.and("openssl.version", openSslVersion);
         }
-        return Counter.builder("app.info").description("Get application info")
+        appInfoCounter = Counter.builder("app.info").description("Get application info")
                 .tags(tags)
                 .register(reg);
+        return appInfoCounter;
+    }
+
+    @EventListener
+    void onApplicationReady(ApplicationReadyEvent e) {
+        appInfoCounter.increment();
     }
 
     private String getOpenSslVersion() {
