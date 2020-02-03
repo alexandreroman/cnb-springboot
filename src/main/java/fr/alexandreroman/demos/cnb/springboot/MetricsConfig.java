@@ -63,9 +63,9 @@ class MetricsConfig {
                 try (final BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()))) {
                     final List<String> lines = in.lines().collect(Collectors.toUnmodifiableList());
                     if (!lines.isEmpty()) {
-                        final StringBuilder buf = new StringBuilder(lines.get(0));
+                        final StringBuilder buf = new StringBuilder(lines.get(0).trim());
                         if (lines.size() > 1 && !lines.get(1).contains("not available")) {
-                            buf.append(" ").append(lines.get(1));
+                            buf.append(" ").append(lines.get(1).trim());
                         }
                         return buf.toString();
                     }
