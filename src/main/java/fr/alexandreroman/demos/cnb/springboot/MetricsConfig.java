@@ -18,6 +18,7 @@ package fr.alexandreroman.demos.cnb.springboot;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Tags;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,9 +34,13 @@ import java.util.stream.Collectors;
 class MetricsConfig {
     @Bean
     Counter appInfo(MeterRegistry reg) {
+        Tags tags = Tags.of("java.version", System.getProperty("java.version"));
+        final String openSslVersion = getOpenSslVersion();
+        if (openSslVersion != null) {
+            tags = tags.and("openssl.version", openSslVersion);
+        }
         return Counter.builder("app.info").description("Get application info")
-                .tag("java.version", System.getProperty("java.version"))
-                .tag("openssl.version", getOpenSslVersion())
+                .tags(tags)
                 .register(reg);
     }
 
@@ -58,6 +63,7 @@ class MetricsConfig {
             }
         } catch (IOException e) {
             log.warn("Failed to get OpenSSL version", e);
+            return null;
         } catch (InterruptedException ignore) {
         }
         log.warn("Failed to get OpenSSL version: no output");
