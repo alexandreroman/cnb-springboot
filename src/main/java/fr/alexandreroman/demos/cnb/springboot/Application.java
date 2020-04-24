@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Pivotal Software, Inc.
+ * Copyright (c) 2020 VMware, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
@@ -78,10 +78,12 @@ class GreetingsController {
 class InfoController {
     @GetMapping(value = "/info")
     Map<String, Object> info() {
-        final Map<String, Object> info = new HashMap<>(3);
+        // Use a TreeMap to sort entries, and get a consistent result.
+        final var info = new TreeMap<String, Object>();
         info.put("java", "Java " + System.getProperty("java.version"));
         info.put("spring.boot", "Spring Boot " + SpringBootApplication.class.getPackage().getImplementationVersion());
         info.put("spring", "Spring " + ApplicationContext.class.getPackage().getImplementationVersion());
+        info.put("os", System.getProperty("os.name") + " " + System.getProperty("os.version"));
         return info;
     }
 }

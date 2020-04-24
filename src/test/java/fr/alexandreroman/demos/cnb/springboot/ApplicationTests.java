@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Pivotal Software, Inc.
+ * Copyright (c) 2020 VMware, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,17 @@
 
 package fr.alexandreroman.demos.cnb.springboot;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApplicationTests {
     @Autowired
@@ -48,5 +47,11 @@ public class ApplicationTests {
     public void testGreetings() {
         assertThat(restTemplate.getForEntity("/greetings", String.class).getBody())
                 .isEqualTo("Hello Spring Boot!");
+    }
+
+    @Test
+    public void testInfo() {
+        assertThat(restTemplate.getForEntity("/info", Map.class).getBody())
+                .isNotEmpty();
     }
 }
