@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: cnb-springboot
+
 management:
   endpoints:
     web:
