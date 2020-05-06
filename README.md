@@ -1,7 +1,8 @@
 # Building a Spring Boot container image with Cloud-Native Buildpacks
 
 This project shows how to build a Spring Boot container image with
-[Cloud-Native Buildpacks](https://buildpacks.io) (CNB).
+[Cloud-Native Buildpacks](https://buildpacks.io) (CNB) and
+[Paketo Buildpacks](https://paketo.io).
 
 You don't need to write a `Dockerfile` anymore: using CNB you get
 secured up-to-date container images out of your source code.
@@ -15,27 +16,12 @@ CNB will automatically provision dependencies and configure your container.
 [Download and install the `pack` CLI](https://github.com/buildpacks/pack/releases).
 You'll need a Docker daemon running to build container images.
 
-If you run `pack` CLI for the first time, you need to set a default
-builder:
+Use the Paketo builder:
 ```bash
-$ pack set-default-builder cloudfoundry/cnb:bionic
-Builder cloudfoundry/cnb:bionic is now the default builder
+$ pack set-default-builder gcr.io/paketo-buildpacks/builder:base
 ```
 
-You may select one of the suggested builders:
-```bash
-$ pack suggest-builders
-Suggested builders:
-	Cloud Foundry:     cloudfoundry/cnb:bionic         Ubuntu bionic base image with buildpacks for Java, NodeJS and Golang
-	Cloud Foundry:     cloudfoundry/cnb:cflinuxfs3     cflinuxfs3 base image with buildpacks for Java, .NET, NodeJS, Python, Golang, PHP, HTTPD and NGINX
-	Cloud Foundry:     cloudfoundry/cnb:tiny           Tiny base image (bionic build image, distroless run image) with buildpacks for Golang
-	Heroku:            heroku/buildpacks:18            heroku-18 base image with buildpacks for Ruby, Java, Node.js, Python, Golang, & PHP
-
-Tip: Learn more about a specific builder with:
-	pack inspect-builder [builder image]
-```
-
-You're now ready to use CNB.
+You're now ready to use CNB with Paketo.
 
 Run this command to build a container image:
 ```bash
