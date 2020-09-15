@@ -13,28 +13,16 @@ CNB will automatically provision dependencies and configure your container.
 
 ## How to use it?
 
-[Download and install the `pack` CLI](https://github.com/buildpacks/pack/releases).
-You'll need a Docker daemon running to build container images.
+You need to run a Docker daemon on your workstation.
 
-Use the Paketo builder:
+Cloud-Native Buildpacks are supported out-of-the-box since
+Spring Boot 2.3. All you need to do is to run the `spring-boot-maven-plugin`
+with the target `build-image`:
 ```bash
-$ pack set-default-builder gcr.io/paketo-buildpacks/builder:base
+$ ./mvnw spring-boot:build-image
 ```
 
-You're now ready to use CNB with Paketo.
-
-Run this command to build a container image:
-```bash
-$ pack build myorg/cnb-springboot
-...
-Successfully built image myorg/cnb-springboot
-```
-
-A lot of dependencies are downloaded in the first run.
-These dependencies will be cached so that next runs are faster.
-
-After a couple of minutes, your container image will be published 
-to your local Docker daemon:
+Your container is built:
 ```bash
 $ docker image ls
 REPOSITORY                             TAG                  IMAGE ID    
@@ -53,7 +41,7 @@ lass Count: 13027, Thread Count: 250, Total Memory: 70368744177664)
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.2.4.RELEASE)
+ :: Spring Boot ::        (v2.3.3.RELEASE)
 
 2020-01-28 15:03:12.372  WARN 1 --- [           main] pertySourceApplicationContextInitializer : Skipping 'cloud' property source addition because not in a cloud
 2020-01-28 15:03:12.391  WARN 1 --- [           main] nfigurationApplicationContextInitializer : Skipping reconfiguration because not in a cloud
