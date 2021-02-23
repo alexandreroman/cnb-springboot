@@ -81,6 +81,10 @@ NAME          TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)        AGE
 service/app   LoadBalancer   10.100.200.35   35.187.115.254   80:30355/TCP   35m
 ```
 
+Enjoy!
+
+![Application screenshot](app.png)
+
 ## Contribute
 
 Contributions are always welcome!
