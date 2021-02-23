@@ -32,8 +32,12 @@ myorg/cnb-springboot                   latest               b1a0d242e5ec
 You can run this container right away:
 ```bash
 $ docker run --rm -p 8080:8080/tcp myorg/cnb-springboot
-Calculated JVM Memory Configuration: -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=87457K -XX:ReservedCodeCacheSize=240M -Xss1M -Xmx68718877278K (Head Room: 0%, Loaded C
-lass Count: 13027, Thread Count: 250, Total Memory: 70368744177664)
+Setting Active Processor Count to 2
+Calculating JVM memory based on 4985508K available memory
+Calculated JVM Memory Configuration: -XX:MaxDirectMemorySize=10M -Xmx4386956K -XX:MaxMetaspaceSize=86551K -XX:ReservedCodeCacheSize=240M -Xss1M (Total Memory: 4985508K, Thread Count: 250, Loaded Class Count: 12867, Headroom: 0%)
+Adding 129 container CA certificates to JVM truststore
+Spring Cloud Bindings Enabled
+Picked up JAVA_TOOL_OPTIONS: -Djava.security.properties=/layers/paketo-buildpacks_bellsoft-liberica/java-security-properties/java-security.properties -agentpath:/layers/paketo-buildpacks_bellsoft-liberica/jvmkill/jvmkill-1.16.0-RELEASE.so=printHeapHistogram=1 -XX:ActiveProcessorCount=2 -XX:MaxDirectMemorySize=10M -Xmx4386956K -XX:MaxMetaspaceSize=86551K -XX:ReservedCodeCacheSize=240M -Xss1M -Dorg.springframework.cloud.bindings.boot.enable=true
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -41,22 +45,20 @@ lass Count: 13027, Thread Count: 250, Total Memory: 70368744177664)
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.3.3.RELEASE)
+ :: Spring Boot ::                (v2.4.3)
 
-2020-01-28 15:03:12.372  WARN 1 --- [           main] pertySourceApplicationContextInitializer : Skipping 'cloud' property source addition because not in a cloud
-2020-01-28 15:03:12.391  WARN 1 --- [           main] nfigurationApplicationContextInitializer : Skipping reconfiguration because not in a cloud
-2020-01-28 15:03:12.424  INFO 1 --- [           main] f.a.demos.cnb.springboot.Application     : Starting Application on b087eee7b53a with PID 1 (/workspace/BOOT-INF/classes started by cnb in /workspace)
-2020-01-28 15:03:12.432  INFO 1 --- [           main] f.a.demos.cnb.springboot.Application     : No active profile set, falling back to default profiles: default
-2020-01-28 15:03:14.878  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-01-28 15:03:14.907  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-01-28 15:03:14.909  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.30]
-2020-01-28 15:03:15.058  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-01-28 15:03:15.058  INFO 1 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2506 ms
-2020-01-28 15:03:15.972  INFO 1 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-01-28 15:03:16.313  INFO 1 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2020-01-28 15:03:16.597  INFO 1 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
-2020-01-28 15:03:16.800  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-01-28 15:03:16.810  INFO 1 --- [           main] f.a.demos.cnb.springboot.Application     : Started Application in 5.746 seconds (JVM running for 10.604)
+2021-02-23 11:12:44.585  INFO 1 --- [           main] f.a.demos.cnb.springboot.Application     : Starting Application v1.0.0-SNAPSHOT using Java 11.0.10 on 0717e733daf3 with PID 1 (/workspace/BOOT-INF/classes started by cnb in /workspace)
+2021-02-23 11:12:44.597  INFO 1 --- [           main] f.a.demos.cnb.springboot.Application     : No active profile set, falling back to default profiles: default
+2021-02-23 11:12:46.190  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-02-23 11:12:46.207  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-23 11:12:46.207  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-02-23 11:12:46.296  INFO 1 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-02-23 11:12:46.297  INFO 1 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1563 ms
+2021-02-23 11:12:46.874  INFO 1 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-23 11:12:46.978  INFO 1 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-02-23 11:12:47.229  INFO 1 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 4 endpoint(s) beneath base path '/actuator'
+2021-02-23 11:12:47.306  INFO 1 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-23 11:12:47.352  INFO 1 --- [           main] f.a.demos.cnb.springboot.Application     : Started Application in 3.426 seconds (JVM running for 3.862)
 ```
 
 ## Deploying to Kubernetes
