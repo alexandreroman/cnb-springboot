@@ -19,12 +19,13 @@ Cloud-Native Buildpacks are supported out-of-the-box since
 Spring Boot 2.3. All you need to do is to run the `spring-boot-maven-plugin`
 with the target `build-image`:
 ```bash
-$ ./mvnw spring-boot:build-image
+$ ./mvnw spring-boot:build-image -Dimage.name=myorg/cnb-springboot
 ```
+
 
 Your container is built:
 ```bash
-$ docker image ls
+$ docker image ls | grep cnb-springboot
 REPOSITORY                             TAG                  IMAGE ID    
 myorg/cnb-springboot                   latest               b1a0d242e5ec
 ```
