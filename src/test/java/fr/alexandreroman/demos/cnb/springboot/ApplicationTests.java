@@ -41,6 +41,7 @@ public class ApplicationTests {
         final ResponseEntity<String> resp = restTemplate.getForEntity("/", String.class);
         assertThat(resp.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(resp.getBody()).contains("Hello Spring Boot!");
+        assertThat(resp.getBody()).contains("Java ");
     }
 
     @Test

@@ -59,6 +59,11 @@ class IndexController {
     String index(Map<String, Object> model) {
         model.put("message", props.getMessage());
         model.put("title", props.getTitle());
+        model.put("java", "Java " + System.getProperty("java.version"));
+        model.put("spring.boot", "Spring Boot " + SpringBootApplication.class.getPackage().getImplementationVersion());
+        model.put("spring", "Spring " + ApplicationContext.class.getPackage().getImplementationVersion());
+        model.put("os", System.getProperty("os.name") + " " + System.getProperty("os.version"));
+
         return "index";
     }
 }
