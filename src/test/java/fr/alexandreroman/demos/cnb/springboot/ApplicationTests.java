@@ -45,13 +45,11 @@ public class ApplicationTests {
 
     @Test
     public void testGreetings() {
-        assertThat(restTemplate.getForEntity("/greetings", String.class).getBody())
-                .isEqualTo("Hello Spring Boot!");
+        assertThat(restTemplate.getForEntity("/greetings", String.class).getBody()).startsWith("Hello");
     }
 
     @Test
     public void testInfo() {
-        assertThat(restTemplate.getForEntity("/info", Map.class).getBody())
-                .isNotEmpty();
+        assertThat(restTemplate.getForEntity("/info", Map.class).getBody()).isNotEmpty();
     }
 }
