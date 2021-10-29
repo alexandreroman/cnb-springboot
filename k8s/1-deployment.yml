@@ -19,7 +19,7 @@ spec:
         prometheus.io/port:  "8080"
     spec:
       containers:
-      - image: alexandreroman/cnb-springboot
+      - image: ghcr.io/alexandreroman/cnb-springboot
         name: app
         resources:
           limits:
