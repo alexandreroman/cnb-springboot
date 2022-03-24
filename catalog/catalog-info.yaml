@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cnb-springboot
+  description: Spring Boot app built with CNCF Buildpacks
+  tags:
+  - app-accelerator
+  - java
+  - spring
+  - web
+  - tanzu
+  annotations:
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=cnb-springboot'
+spec:
+  type: service
+  lifecycle: experimental
+  owner: default-team

@@ -1,0 +1,13 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: cnb-springboot
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: cnb-springboot
+spec:
+  source:
+    git:
+      ref:
+        branch: tap
+      url: https://github.com/alexandreroman/cnb-springboot.git
