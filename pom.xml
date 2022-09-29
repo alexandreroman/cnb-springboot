@@ -14,7 +14,7 @@
     <description>Demo project showing to build a Spring Boot app with Cloud-native Buildpacks</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <image.name>ghcr.io/alexandreroman/cnb-springboot</image.name>
     </properties>
 
