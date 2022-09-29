@@ -15,7 +15,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <image.name>ghcr.io/alexandreroman/cnb-springboot</image.name>
+        <spring-boot.build-image.imageName>ghcr.io/alexandreroman/cnb-springboot</spring-boot.build-image.imageName>
     </properties>
 
     <dependencies>
@@ -67,9 +67,12 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                    <image>
-                        <name>${image.name}</name>
-                    </image>
+                    <docker>
+                        <publishRegistry>
+                            <username>${env.DOCKER_PUBLISH_USERNAME}</username>
+                            <password>${env.DOCKER_PUBLISH_PASSWORD}</password>
+                        </publishRegistry>
+                    </docker>
                 </configuration>
                 <executions>
                     <execution>

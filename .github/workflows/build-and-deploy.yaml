@@ -1,0 +1,52 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+    - main
+    - testing
+
+env:
+  APP_IMAGE: ghcr.io/alexandreroman/cnb-springboot
+  JAVA_VERSION: 17
+
+jobs:
+  test-app:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/setup-java@v3
+      with:
+        distribution: temurin
+        java-version: ${{ env.JAVA_VERSION }}
+        cache: maven
+    - name: Test app
+      run: ./mvnw -B test
+
+  deploy-image:
+    needs:
+    - test-app
+    runs-on: ubuntu-latest
+    steps:
+    - uses: buildpacks/github-actions/setup-pack@v4.4.0
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/setup-java@v3
+      with:
+        distribution: temurin
+        java-version: ${{ env.JAVA_VERSION }}
+        cache: maven
+    - name: Log in to the container registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build image
+      run: ./mvnw -B spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=$APP_IMAGE -Dspring-boot.build-image.publish=true
+      env:
+        DOCKER_PUBLISH_USERNAME: ${{ github.actor }}
+        DOCKER_PUBLISH_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
